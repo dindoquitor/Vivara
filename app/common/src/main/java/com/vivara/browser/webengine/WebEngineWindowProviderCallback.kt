@@ -30,6 +30,7 @@ interface WebEngineWindowProviderCallback {
     fun isAd(url: Uri, acceptHeader: String?, baseUri: Uri): Boolean?
     fun isAdBlockingEnabled(): Boolean
     fun isDialogsBlockingEnabled(): Boolean
+    fun getCosmeticCSS(): String
     fun shouldBlockNewWindow(dialog: Boolean, userGesture: Boolean): Boolean
     fun onBlockedAd(uri: String)
     fun onBlockedDialog(newTab: Boolean)

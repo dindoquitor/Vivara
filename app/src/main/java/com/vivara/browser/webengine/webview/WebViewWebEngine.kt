@@ -323,6 +323,10 @@ class WebViewWebEngine(val tab: WebTabState) : WebEngine, CursorDrawerDelegate.C
             return callback?.isDialogsBlockingEnabled() ?: false
         }
 
+        override fun getCosmeticCSS(): String {
+            return callback?.getCosmeticCSS() ?: ""
+        }
+
         override fun onBlockedAd(url: Uri) {
             callback?.onBlockedAd(url.toString())
         }

@@ -259,6 +259,18 @@
           android:visibility="gone"
           />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/etAdBlockerCustomRules"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="12dp"
+        android:gravity="top|start"
+        android:hint="@string/adblock_custom_rules_hint"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        />
+
   </LinearLayout>
 
   <LinearLayout

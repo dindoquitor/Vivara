@@ -1282,6 +1282,10 @@ open class MainActivity : AppCompatActivity(), ActionBar.Callback {
             return shouldBlockNewWindow(dialog = true, userGesture = false)
         }
 
+        override fun getCosmeticCSS(): String {
+            return adblockModel.getCosmeticCSS()
+        }
+
         override fun shouldBlockNewWindow(dialog: Boolean, userGesture: Boolean): Boolean {
             val hostConfig = runBlocking(Dispatchers.Main.immediate){ tabsModel.findHostConfig(tab, false) }
             val currentBlockPopupsLevelValue = hostConfig?.popupBlockLevel ?: HostConfig.DEFAULT_BLOCK_POPUPS_VALUE

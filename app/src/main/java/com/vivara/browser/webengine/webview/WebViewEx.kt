@@ -103,6 +103,7 @@ open class WebViewEx(context: Context, val callback: Callback, val jsInterface: 
         fun isAdBlockingEnabled(): Boolean
         fun isDialogsBlockingEnabled(): Boolean
         fun isAd(request: WebResourceRequest, baseUri: Uri): Boolean
+        fun getCosmeticCSS(): String
         fun onBlockedAd(url: Uri)
         fun onBlockedDialog(newTab: Boolean)
         fun onCreateWindow(dialog: Boolean, userGesture: Boolean): WebViewEx?
@@ -413,6 +414,20 @@ open class WebViewEx(context: Context, val callback: Callback, val jsInterface: 
                 Log.d(TAG, "onPageFinished url: $url")
                 callback.onPageFinished(url)
                 evaluateJavascript(getGenericJSInjects(), null)
+                val cosmeticCSS = callback.getCosmeticCSS()
+                if (cosmeticCSS.isNotEmpty()) {
+                    val escaped = cosmeticCSS
+                        .replace("\\", "\\\\")
+                        .replace("'", "\\'")
+                        .replace("\n", "")
+                        .replace("\r", "")
+                    evaluateJavascript(
+                        "(function(){var s=document.getElementById('vivara-cosmetic');if(s)s.remove();" +
+                        "s=document.createElement('style');s.id='vivara-cosmetic';" +
+                        "s.textContent='$escaped';document.head.appendChild(s);})()",
+                        null
+                    )
+                }
             }
 
             override fun onLoadResource(view: WebView, url: String) {

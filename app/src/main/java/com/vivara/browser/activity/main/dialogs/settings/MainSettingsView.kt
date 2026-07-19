@@ -244,6 +244,7 @@ class MainSettingsView @JvmOverloads constructor(
     private fun initAdBlockConfigUI() {
         vb.scAdblock.isChecked = config.adBlockEnabled
         vb.etAdBlockerListUrl.setText(config.adBlockListURL.value)
+        vb.etAdBlockerCustomRules.setText(config.adBlockCustomRules)
         vb.llAdblock.setOnClickListener {
             vb.scAdblock.isChecked = !vb.scAdblock.isChecked
             config.adBlockEnabled = vb.scAdblock.isChecked
@@ -268,6 +269,7 @@ class MainSettingsView @JvmOverloads constructor(
     private fun saveAdBlockListUrl() {
         val value = vb.etAdBlockerListUrl.text.toString().trim()
         config.adBlockListURL.value = value.ifEmpty { Config.DEFAULT_ADBLOCK_LIST_URL }
+        config.adBlockCustomRules = vb.etAdBlockerCustomRules.text.toString().trim()
     }
 
     private fun updateAdBlockInfo() {

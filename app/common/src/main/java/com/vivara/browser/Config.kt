@@ -41,6 +41,7 @@ class Config(val prefs: SharedPreferences) {
         const val ADBLOCK_ENABLED_PREF_KEY = "adblock_enabled"
         const val ADBLOCK_LAST_UPDATE_LIST_KEY = "adblock_last_update"
         const val ADBLOCK_LIST_URL_KEY = "adblock_list_url"
+        const val ADBLOCK_CUSTOM_RULES_KEY = "adblock_custom_rules"
         const val APP_WEB_EXTENSION_VERSION_KEY = "app_web_extension_version"
         const val NOTIFICATION_ABOUT_ENGINE_CHANGE_SHOWN_KEY = "notification_about_engine_change_shown"
         const val APP_VERSION_CODE_MARK_KEY = "app_version_code_mark"
@@ -49,6 +50,14 @@ class Config(val prefs: SharedPreferences) {
         const val ENGINE_WEB_VIEW = "WebView"
 
         const val DEFAULT_ADBLOCK_LIST_URL = "https://easylist.to/easylist/easylist.txt"
+        val DEFAULT_ADBLOCK_LIST_URLS = listOf(
+            "https://easylist.to/easylist/easylist.txt",           // EasyList (base ad blocking)
+            "https://easylist.to/easylist/easyprivacy.txt",         // EasyPrivacy (tracking)
+            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt",                // uBlock filters
+            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",                // uBlock privacy
+            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances.txt",              // Anti-adblock/annoyances
+            "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt"                 // Badware/malware
+        )
         val SearchEnginesTitles = arrayOf("Google", "Bing", "Yahoo!", "DuckDuckGo", "Yandex", "Startpage", "Custom")
         val SearchEnginesNames = arrayOf("google", "bing", "yahoo", "ddg", "yandex", "startpage", "custom")
         val SearchEnginesURLs = listOf("https://www.google.com/search?q=[query]", "https://www.bing.com/search?q=[query]",
@@ -224,6 +233,12 @@ class Config(val prefs: SharedPreferences) {
         }
 
     var adBlockListURL = ObservableStringPreference(DEFAULT_ADBLOCK_LIST_URL, ADBLOCK_LIST_URL_KEY)
+
+    var adBlockCustomRules: String
+        get() = prefs.getString(ADBLOCK_CUSTOM_RULES_KEY, "") ?: ""
+        set(value) {
+            prefs.edit().putString(ADBLOCK_CUSTOM_RULES_KEY, value).apply()
+        }
 
     var adBlockListLastUpdate: Long
         get() = prefs.getLong(ADBLOCK_LAST_UPDATE_LIST_KEY, 0)
