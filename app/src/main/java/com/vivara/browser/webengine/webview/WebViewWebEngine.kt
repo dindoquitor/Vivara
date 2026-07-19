@@ -327,6 +327,10 @@ class WebViewWebEngine(val tab: WebTabState) : WebEngine, CursorDrawerDelegate.C
             return callback?.getCosmeticCSS() ?: ""
         }
 
+        override fun onBlockedRedirect(url: String) {
+            callback?.onBlockedRedirect(url)
+        }
+
         override fun onBlockedAd(url: Uri) {
             callback?.onBlockedAd(url.toString())
         }

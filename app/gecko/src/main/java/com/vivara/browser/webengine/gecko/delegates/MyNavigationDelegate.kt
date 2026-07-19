@@ -2,6 +2,7 @@ package com.vivara.browser.webengine.gecko.delegates
 
 import android.util.Log
 import com.vivara.browser.AppContext
+import com.vivara.browser.utils.RedirectBlocker
 import com.vivara.browser.webengine.gecko.GeckoWebEngine
 import kotlinx.coroutines.runBlocking
 import org.mozilla.geckoview.AllowOrDeny
@@ -20,6 +21,7 @@ class MyNavigationDelegate(private val webEngine: GeckoWebEngine) : GeckoSession
     var canGoForward = false
     var locationURL: String? = null
     private var errorTemplate: String? = null
+    val redirectBlocker = RedirectBlocker()
 
     override fun onCanGoBack(session: GeckoSession, canGoBack: Boolean) {
         this.canGoBack = canGoBack
@@ -56,7 +58,17 @@ class MyNavigationDelegate(private val webEngine: GeckoWebEngine) : GeckoSession
 
         val callback = webEngine.callback ?: return GeckoResult.deny()
 
-        if (callback.shouldOverrideUrlLoading(request.uri)) {
+        // Redirect chain detection
+        val url = request.uri
+        val isRedirect = request.isRedirect
+        redirectBlocker.record(url, isRedirect)
+        if (redirectBlocker.shouldBlock(url, isRedirect, locationURL)) {
+            Log.w(TAG, "Blocked redirect chain: $url")
+            callback.onBlockedRedirect(url)
+            return GeckoResult.deny()
+        }
+
+        if (callback.shouldOverrideUrlLoading(url)) {
             return GeckoResult.deny()
         }
 

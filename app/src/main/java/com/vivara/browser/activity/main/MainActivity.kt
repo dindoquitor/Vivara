@@ -1315,6 +1315,13 @@ open class MainActivity : AppCompatActivity(), ActionBar.Callback {
             }
         }
 
+        override fun onBlockedRedirect(url: String) {
+            runOnUiThread {
+                val msg = getString(R.string.redirect_blocked)
+                NotificationView.showBottomRight(vb.rlRoot, R.drawable.ic_block_popups, msg)
+            }
+        }
+
         override fun onCreateWindow(dialog: Boolean, userGesture: Boolean): View? {
             if (shouldBlockNewWindow(dialog, userGesture)) {
                 onBlockedDialog(!dialog)

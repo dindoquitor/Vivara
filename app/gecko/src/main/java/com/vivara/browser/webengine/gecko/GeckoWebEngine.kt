@@ -280,6 +280,7 @@ class GeckoWebEngine(val tab: WebTabState): WebEngine,
 
     override fun loadUrl(url: String) {
         Log.d(TAG, "loadUrl($url)")
+        navigationDelegate.redirectBlocker.reset()
         if (!session.isOpen) {
             session.open(runtime)
         }

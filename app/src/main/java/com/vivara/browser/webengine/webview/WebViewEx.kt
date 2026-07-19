@@ -49,6 +49,7 @@ import com.vivara.browser.AppContext
 import com.vivara.browser.Config
 import com.vivara.browser.R
 import com.vivara.browser.utils.DPADNavigationEventsAdapter
+import com.vivara.browser.utils.RedirectBlocker
 import com.vivara.browser.utils.Utils
 import java.net.URLEncoder
 import java.util.UUID
@@ -70,6 +71,7 @@ open class WebViewEx(context: Context, val callback: Callback, val jsInterface: 
 
     private var virtualCursorMode: Boolean = true
     private var genericInjects: String? = null
+    val redirectBlocker = RedirectBlocker()
     private var webChromeClient_: WebChromeClient
     private var fullscreenViewCallback: WebChromeClient.CustomViewCallback? = null
     private var pickFileCallback: ValueCallback<Array<Uri>>? = null
@@ -104,6 +106,7 @@ open class WebViewEx(context: Context, val callback: Callback, val jsInterface: 
         fun isDialogsBlockingEnabled(): Boolean
         fun isAd(request: WebResourceRequest, baseUri: Uri): Boolean
         fun getCosmeticCSS(): String
+        fun onBlockedRedirect(url: String)
         fun onBlockedAd(url: Uri)
         fun onBlockedDialog(newTab: Boolean)
         fun onCreateWindow(dialog: Boolean, userGesture: Boolean): WebViewEx?
@@ -359,7 +362,19 @@ open class WebViewEx(context: Context, val callback: Callback, val jsInterface: 
         webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 Log.d(TAG, "shouldOverrideUrlLoading url: ${request.url}")
-                return callback.shouldOverrideUrlLoading(request.url.toString())
+                val url = request.url.toString()
+                val isRedirect = request.isRedirect
+                val currentUrl = currentOriginalUrl?.toString()
+
+                // Redirect chain detection
+                redirectBlocker.record(url, isRedirect)
+                if (redirectBlocker.shouldBlock(url, isRedirect, currentUrl)) {
+                    Log.w(TAG, "Blocked redirect chain: $url")
+                    callback.onBlockedRedirect(url)
+                    return true
+                }
+
+                return callback.shouldOverrideUrlLoading(url)
             }
 
             override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
@@ -532,6 +547,7 @@ open class WebViewEx(context: Context, val callback: Callback, val jsInterface: 
     }
 
     override fun loadUrl(url: String) {
+        redirectBlocker.reset()
         when {
             Config.HOME_URL_ALIAS == url -> {
                 when (config.homePageMode) {
