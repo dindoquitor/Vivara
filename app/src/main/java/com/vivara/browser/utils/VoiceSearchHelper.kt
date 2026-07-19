@@ -10,10 +10,13 @@ import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.AttributeSet
+import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.view.animation.BounceInterpolator
@@ -23,23 +26,36 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import com.vivara.browser.R
 import com.vivara.browser.databinding.ViewSpeachRecognizerResultsBinding
+import java.util.*
 
 
 class VoiceSearchHelper(private val activity: Activity, private val requestCode: Int, private val permissionRequestCode: Int) {
 
+    companion object {
+        private const val TAG = "VoiceSearchHelper"
+        private const val RECOGNITION_TIMEOUT_MS = 10_000L // 10 seconds
+    }
+
+    private var speechRecognizer: SpeechRecognizer? = null
     private var recognitionResultsRendererView: RecognitionResultsRendererView? = null
-    private lateinit var languageModel: String
+    private var languageModel: String = RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH
     private lateinit var callback: Callback
+    private val timeoutHandler = Handler(Looper.getMainLooper())
+    private val timeoutRunnable = Runnable {
+        Log.w(TAG, "Voice recognition timed out after ${RECOGNITION_TIMEOUT_MS}ms")
+        cancelRecognition()
+        disposeResultsView()
+        Toast.makeText(activity, R.string.can_not_recognize, Toast.LENGTH_SHORT).show()
+    }
 
     interface Callback {
         fun onResult(text: String?)
-/*        fun onFallbackStartedRecognizing()
-        fun onFallbackPartialResult(text: String)
-        fun onFallbackError(error: Int)*/
     }
 
     fun initiateVoiceSearch(callback: Callback,
                             languageModel: String = RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH) {
+        // Cancel any active recognition first
+        cancelRecognition()
         this.callback = callback
         this.languageModel = languageModel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -96,36 +112,62 @@ class VoiceSearchHelper(private val activity: Activity, private val requestCode:
             return
         }
 
-        val speechRecognizer = SpeechRecognizer.createSpeechRecognizer(activity)
-        speechRecognizer.setRecognitionListener(object : RecognitionListenerAdapter() {
-            override fun onReadyForSpeech(params: Bundle?) {
-                //callback.onFallbackStartedRecognizing()
-            }
+        // Destroy any existing recognizer first
+        cancelRecognition()
 
-            override fun onPartialResults(partialResults: Bundle?) {
-                val matches = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                if (matches != null && matches.isNotEmpty()) {
-                    recognitionResultsRendererView?.apply {
-                        resultText = matches.first()
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(activity).also { recognizer ->
+            recognizer.setRecognitionListener(object : RecognitionListenerAdapter() {
+                override fun onReadyForSpeech(params: Bundle?) {
+                    Log.d(TAG, "onReadyForSpeech")
+                    timeoutHandler.postDelayed(timeoutRunnable, RECOGNITION_TIMEOUT_MS)
+                }
+
+                override fun onBeginningOfSpeech() {
+                    Log.d(TAG, "onBeginningOfSpeech")
+                    // Reset timeout when user starts speaking
+                    timeoutHandler.removeCallbacks(timeoutRunnable)
+                    timeoutHandler.postDelayed(timeoutRunnable, RECOGNITION_TIMEOUT_MS)
+                }
+
+                override fun onPartialResults(partialResults: Bundle?) {
+                    timeoutHandler.removeCallbacks(timeoutRunnable)
+                    val matches = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                    if (matches != null && matches.isNotEmpty()) {
+                        recognitionResultsRendererView?.apply {
+                            resultText = matches.first()
+                        }
                     }
                 }
-            }
 
-            override fun onResults(results: Bundle?) {
-                disposeResultsView()
-                val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                callback.onResult(matches?.firstOrNull())
-            }
+                override fun onResults(results: Bundle?) {
+                    Log.d(TAG, "onResults")
+                    timeoutHandler.removeCallbacks(timeoutRunnable)
+                    disposeResultsView()
+                    destroyRecognizer()
+                    val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                    callback.onResult(matches?.firstOrNull())
+                }
 
-            override fun onError(error: Int) {
-                disposeResultsView()
-                Toast.makeText(activity, R.string.error, Toast.LENGTH_SHORT).show()
-            }
+                override fun onError(error: Int) {
+                    Log.e(TAG, "onError: $error")
+                    timeoutHandler.removeCallbacks(timeoutRunnable)
+                    disposeResultsView()
+                    destroyRecognizer()
+                    when (error) {
+                        SpeechRecognizer.ERROR_NO_MATCH,
+                        SpeechRecognizer.ERROR_SPEECH_TIMEOUT ->
+                            Toast.makeText(activity, R.string.can_not_recognize, Toast.LENGTH_SHORT).show()
+                        else ->
+                            Toast.makeText(activity, R.string.error, Toast.LENGTH_SHORT).show()
+                    }
+                }
 
-            override fun onRmsChanged(rmsdB: Float) {
-                recognitionResultsRendererView?.onRmsChanged(rmsdB)
-            }
-        })
+                override fun onRmsChanged(rmsdB: Float) {
+                    recognitionResultsRendererView?.onRmsChanged(rmsdB)
+                }
+            })
+        }
+
         val speechRecognizerIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         speechRecognizerIntent.putExtra(
             RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -139,12 +181,27 @@ class VoiceSearchHelper(private val activity: Activity, private val requestCode:
             RecognizerIntent.EXTRA_CALLING_PACKAGE,
             activity.packageName
         )
-        speechRecognizer.startListening(speechRecognizerIntent)
+        speechRecognizer!!.startListening(speechRecognizerIntent)
 
         recognitionResultsRendererView = RecognitionResultsRendererView(activity)
         val lp = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT)
         activity.addContentView(recognitionResultsRendererView, lp)
+    }
+
+    private fun cancelRecognition() {
+        timeoutHandler.removeCallbacks(timeoutRunnable)
+        destroyRecognizer()
+    }
+
+    private fun destroyRecognizer() {
+        speechRecognizer?.let {
+            try {
+                it.stopListening()
+                it.destroy()
+            } catch (_: Exception) {}
+            speechRecognizer = null
+        }
     }
 
     private fun disposeResultsView() {
@@ -170,38 +227,21 @@ class VoiceSearchHelper(private val activity: Activity, private val requestCode:
                                  grantResults: IntArray): Boolean {
         if (requestCode != permissionRequestCode) return false
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            initiateVoiceSearch(callback)
+            initiateVoiceSearch(callback, languageModel)
         }
         return true
     }
 
     open class RecognitionListenerAdapter: RecognitionListener {
-        override fun onReadyForSpeech(params: Bundle?) {
-        }
-
-        override fun onBeginningOfSpeech() {
-        }
-
-        override fun onRmsChanged(rmsdB: Float) {
-        }
-
-        override fun onBufferReceived(buffer: ByteArray?) {
-        }
-
-        override fun onEndOfSpeech() {
-        }
-
-        override fun onError(error: Int) {
-        }
-
-        override fun onResults(results: Bundle?) {
-        }
-
-        override fun onPartialResults(partialResults: Bundle?) {
-        }
-
-        override fun onEvent(eventType: Int, params: Bundle?) {
-        }
+        override fun onReadyForSpeech(params: Bundle?) {}
+        override fun onBeginningOfSpeech() {}
+        override fun onRmsChanged(rmsdB: Float) {}
+        override fun onBufferReceived(buffer: ByteArray?) {}
+        override fun onEndOfSpeech() {}
+        override fun onError(error: Int) {}
+        override fun onResults(results: Bundle?) {}
+        override fun onPartialResults(partialResults: Bundle?) {}
+        override fun onEvent(eventType: Int, params: Bundle?) {}
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
