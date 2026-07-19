@@ -3,13 +3,10 @@
   <string name="app_name">"Vivara: דפדפן לטלויזיה"</string>
   <string name="error">"שגיאה"</string>
   <string name="ok">"OK"</string>
-  <string name="loading">"טוען..."</string>
-  <string name="url_prompt">"הכנס טקסט לחיפוש או URL"</string>
+    <string name="url_prompt">"הכנס טקסט לחיפוש או URL"</string>
   <string name="can_not_recognize">"לא ניתן לזהות"</string>
   <string name="speak">"בקשת חיפוש"</string>
-  <string name="open_new_tab">"פתח כרטיסיה חדשה"</string>
-  <string name="close">"סגור"</string>
-  <string name="web_perm_request_confirmation">"הדף הזה מבקש להשתמש במקורות הבאים:
+    <string name="web_perm_request_confirmation">"הדף הזה מבקש להשתמש במקורות הבאים:
 %s"</string>
   <string name="allow">"אפשר"</string>
   <string name="deny">"דחה"</string>
@@ -25,14 +22,11 @@
   <string name="edit">"ערוך"</string>
   <string name="new_bookmark">"סימניה חדשה"</string>
   <string name="title">"כותרת"</string>
-  <string name="search_history">"היסטורית חיפוש"</string>
-  <string name="engine">"מנוע חיפוש"</string>
+    <string name="engine">"מנוע חיפוש"</string>
   <string name="choose_default_search_engine">"בחר מנוע חיפוש ברירת מחדל"</string>
   <string name="save">"שמור"</string>
   <string name="search_engine_url_with_query_placeholder_query">"URL מנוע חיפוש עם בקשת שומר מקום [query]"</string>
-  <string name="change_search_engine">"שנה מנוע חיפוש"</string>
-  <string name="change_user_agent">"שנה הגדרת מצב משתמש"</string>
-  <string name="user_agent_string">"מחרוזת מצב משתמש"</string>
+    <string name="user_agent_string">"מחרוזת מצב משתמש"</string>
   <string name="choose_user_agent_string">"בחר מחרוזת מצב משתמש"</string>
   <string name="edit_user_agent_string">"ערוך מחרוזת מצב משתמש"</string>
   <string name="nothing">"כלום"</string>
@@ -51,14 +45,11 @@
   <string name="history">"היסטוריה"</string>
   <string name="settings">"הגדרות"</string>
   <string name="shortcut">"קיצור דרך"</string>
-  <string name="toggle_main_menu">"הפעל/כבה את התפריט הראשי"</string>
-  <string name="navigate_back">"נווט חזרה"</string>
+    <string name="navigate_back">"נווט חזרה"</string>
   <string name="navigate_home">"נווט לבית"</string>
   <string name="refresh_page">"רענן עמוד"</string>
   <string name="voice_search">"חיפוש קולי"</string>
-  <string name="zoom_in">"הגדל"</string>
-  <string name="zoom_out">"הקטן"</string>
-  <string name="not_set">"לא הוגדר"</string>
+    <string name="not_set">"לא הוגדר"</string>
   <string name="action">"פעולה:"</string>
   <string name="current_key">"מקש נוכחי:"</string>
   <string name="set_key_for_action">"הגדר מקש לפעולה:"</string>
@@ -87,10 +78,8 @@
   <string name="update">"עדכן:"</string>
   <string name="new_version_available_s">"גרסא חדשה זמינה: %s"</string>
   <string name="warning">"אזהרה"</string>
-  <string name="unprotected_connection">"חיבור לא מוגן"</string>
-  <string name="err_webview_can_not_link">"לא ניתן לקשר לרכיב WebView. נסה להתקין את רכיב WebView של מערכת Android קודם."</string>
-  <string name="new_tab_title">"[כרטיסיה חדשה]"</string>
-  <string name="open_a_new_tab_here">"פתח כרטיסיה חדשה כאן"</string>
+    <string name="err_webview_can_not_link">"לא ניתן לקשר לרכיב WebView. נסה להתקין את רכיב WebView של מערכת Android קודם."</string>
+    <string name="open_a_new_tab_here">"פתח כרטיסיה חדשה כאן"</string>
   <string name="tabs">"כרטיסיות"</string>
   <string name="ssl_expired">"התעודה פגת תוקף"</string>
   <string name="ssl_idmismatch">"אי התאמה בין שם המארח"</string>
@@ -119,8 +108,7 @@
     <item>לבן</item>
     <item>אפל</item>
   </array>
-  <string name="set_search_engine_as_homepage">הפוך מנוע חיפוש לדף הבית שלך</string>
-  <string name="toggle_keep_screen_on">השאר מסך דלוק</string>
+    <string name="toggle_keep_screen_on">השאר מסך דלוק</string>
   <string name="navigate_with_joystick_axes">ניווט עם צירי ג\'ויסטיק</string>
   <string name="cursor_max_speed">מהירות מקסימלית של הסמן הווירטואלי</string>
   <string name="cursor_acceleration">האצה של הסמן הווירטואלי</string>
@@ -172,8 +160,7 @@
 
   <string name="web_browser_engine_temporary_setting">מנוע דפדפן אינטרנט</string>
   <string name="need_restart_message">הפעל מחדש את האפליקציה כדי להחיל שינויים</string>
-  <string name="restart">איתחול</string>
-  <string name="yes">כן</string>
+    <string name="yes">כן</string>
   <string name="no">לא</string>
   <string name="site_asks_to_open_unknown_url">האתר מבקש לפתוח כתובת URL לא ידועה</string>
   <string name="site_asks_to_open_unknown_url_message">האם ברצונך לפתוח את כתובת האתר הזו באפליקציה חיצונית?</string>

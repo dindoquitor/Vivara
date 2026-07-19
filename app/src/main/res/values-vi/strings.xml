@@ -3,13 +3,10 @@
   <string name="app_name">Vivara: Trình duyệt web TV</string>
   <string name="error">Lỗi</string>
   <string name="ok">OK</string>
-  <string name="loading">Đang tải…</string>
-  <string name="url_prompt">Nhập văn bản hoặc URL</string>
+    <string name="url_prompt">Nhập văn bản hoặc URL</string>
   <string name="can_not_recognize">Không thể xác nhận</string>
   <string name="speak">Truy vấn tìm kiếm</string>
-  <string name="open_new_tab">Mở tab mới</string>
-  <string name="close">Đóng</string>
-  <string name="web_perm_request_confirmation">Trang web này muốn sử dụng các tài nguyên sau: \n\n%s</string>
+    <string name="web_perm_request_confirmation">Trang web này muốn sử dụng các tài nguyên sau: \n\n%s</string>
   <string name="allow">Cho phép</string>
   <string name="deny">Từ chối</string>
   <string name="location">Vị trí</string>
@@ -22,14 +19,11 @@
   <string name="edit">Sửa</string>
   <string name="new_bookmark">Dấu trang mới</string>
   <string name="title">Tiêu đề</string>
-  <string name="search_history">Lịch sử tìm kiếm</string>
-  <string name="engine">Công cụ tìm kiếm</string>
+    <string name="engine">Công cụ tìm kiếm</string>
   <string name="choose_default_search_engine">Chọn công cụ tìm kiếm mặc định</string>
   <string name="save">Lưu</string>
   <string name="search_engine_url_with_query_placeholder_query">URL của công cụ tìm kiếm với trình giữ chỗ truy vấn [query]</string>
-  <string name="change_search_engine">Thay đổi Công cụ Tìm kiếm</string>
-  <string name="change_user_agent">Thay đổi User Agent</string>
-  <string name="user_agent_string">Chuỗi User Agent</string>
+    <string name="user_agent_string">Chuỗi User Agent</string>
   <string name="choose_user_agent_string">Chọn chuỗi User Agent</string>
   <string name="edit_user_agent_string">Chỉnh sửa chuỗi User Agent</string>
   <string name="nothing">Không có tải xuống</string>
@@ -48,14 +42,11 @@
   <string name="history">Lịch sử</string>
   <string name="settings">Cài đặt</string>
   <string name="shortcut">Phím tắt</string>
-  <string name="toggle_main_menu">Chuyển đổi menu chính</string>
-  <string name="navigate_back">Phím quay lại</string>
+    <string name="navigate_back">Phím quay lại</string>
   <string name="navigate_home">Trở về trang chủ</string>
   <string name="refresh_page">Làm mới trang</string>
   <string name="voice_search">Tìm kiếm bằng giọng nói</string>
-  <string name="zoom_in">Phóng to</string>
-  <string name="zoom_out">Thu nhỏ</string>
-  <string name="not_set">Không được thiết lập</string>
+    <string name="not_set">Không được thiết lập</string>
   <string name="action">Hoạt động:</string>
   <string name="current_key">Phím hiện tại:</string>
   <string name="set_key_for_action">Đặt phím cho hành động</string>
@@ -85,10 +76,8 @@
   <string name="new_version_available_s">Có phiên bản mới: %s</string>
   <string name="web_browser_optimized_for_tvs">Trình duyệt web được tối ưu hóa cho TV</string>
   <string name="warning">Cảnh báo</string>
-  <string name="unprotected_connection">Kết nối không được bảo vệ</string>
-  <string name="err_webview_can_not_link">Không thể liên kết với thành phần WebView. Trước tiên, hãy thử cài đặt thành phần WebView của hệ thống Android.</string>
-  <string name="new_tab_title">[TAB MỚI]</string>
-  <string name="open_a_new_tab_here">Mở tab mới tại đây</string>
+    <string name="err_webview_can_not_link">Không thể liên kết với thành phần WebView. Trước tiên, hãy thử cài đặt thành phần WebView của hệ thống Android.</string>
+    <string name="open_a_new_tab_here">Mở tab mới tại đây</string>
   <string name="tabs">Các tab</string>
   <array name="tabs_options">
     <item>Mở tab mới</item>
@@ -123,8 +112,7 @@
     <item>Chủ đề sáng</item>
     <item>Chủ đề tối</item>
   </array>
-  <string name="set_search_engine_as_homepage">Đặt công cụ tìm kiếm làm trang chủ</string>
-  <string name="toggle_keep_screen_on">Luôn bật màn hình</string>
+    <string name="toggle_keep_screen_on">Luôn bật màn hình</string>
   <string name="navigate_with_joystick_axes">Điều hướng bằng trục joystick</string>
   <string name="cursor_max_speed">Tốc độ tối đa của con trỏ ảo</string>
   <string name="cursor_acceleration">Gia tốc con trỏ ảo</string>
@@ -169,8 +157,7 @@
 
   <string name="web_browser_engine_temporary_setting">Web browser engine</string>
   <string name="need_restart_message">Khởi động lại ứng dụng để áp dụng các thay đổi</string>
-  <string name="restart">Khởi động lại</string>
-  <string name="yes">CÓ</string>
+    <string name="yes">CÓ</string>
   <string name="no">KHÔNG</string>
   <string name="site_asks_to_open_unknown_url">Trang web yêu cầu mở URL không xác định</string>
   <string name="site_asks_to_open_unknown_url_message">Bạn có muốn mở URL này trong ứng dụng bên ngoài không?</string>

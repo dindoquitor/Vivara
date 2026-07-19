@@ -3,13 +3,10 @@
   <string name="app_name">Vivara: Webbrowser für TVs</string>
   <string name="error">Fehler</string>
   <string name="ok">OK</string>
-  <string name="loading">Lade…</string>
-  <string name="url_prompt">Suchbegriff oder URL eingeben</string>
+    <string name="url_prompt">Suchbegriff oder URL eingeben</string>
   <string name="can_not_recognize">Kann nicht erkannt werden</string>
   <string name="speak">Suchanfrage</string>
-  <string name="open_new_tab">Öffne neuen Tab</string>
-  <string name="close">Schließen</string>
-  <string name="web_perm_request_confirmation">Diese Webseite nutzt folgende Ressourcen:\n\n%s</string>
+    <string name="web_perm_request_confirmation">Diese Webseite nutzt folgende Ressourcen:\n\n%s</string>
   <string name="allow">Erlauben</string>
   <string name="deny">Ablehnen</string>
   <string name="location">Standort</string>
@@ -22,15 +19,11 @@
   <string name="edit">Bearbeiten</string>
   <string name="new_bookmark">Neues Lesezeichen</string>
   <string name="title">Titel</string>
-  <string name="search_history">Suchverlauf</string>
-  <string name="engine">Suchmaschine</string>
+    <string name="engine">Suchmaschine</string>
   <string name="choose_default_search_engine">Verwendete Suchmaschine auswählen</string>
-  <string name="set_search_engine_as_homepage">Suchmaschine als Startseite verwenden</string>
-  <string name="save">Speichern</string>
+    <string name="save">Speichern</string>
   <string name="search_engine_url_with_query_placeholder_query">URL der Suchmaschine mit [Suchbegriff-Platzhalter]</string>
-  <string name="change_search_engine">Suchmaschine ändern</string>
-  <string name="change_user_agent">User-Agent ändern</string>
-  <string name="user_agent_string">"User-Agent-Zeichenfolge</string>
+    <string name="user_agent_string">"User-Agent-Zeichenfolge</string>
   <string name="choose_user_agent_string">Zeichenfolge des User-Agenten wählen</string>
   <string name="edit_user_agent_string">Zeichenfolge des User-Agenten bearbeiten</string>
   <string name="nothing">Nichts</string>
@@ -49,14 +42,11 @@
   <string name="history">Verlauf</string>
   <string name="settings">Einstellungen</string>
   <string name="shortcut">Verknüpfung</string>
-  <string name="toggle_main_menu">Hauptmenü anzeigen</string>
-  <string name="navigate_back">Zurück</string>
+    <string name="navigate_back">Zurück</string>
   <string name="navigate_home">Startseite</string>
   <string name="refresh_page">Seite aktualisieren</string>
   <string name="voice_search">Sprachsuche</string>
-  <string name="zoom_in">Vergrößern</string>
-  <string name="zoom_out">Verkleinern</string>
-  <string name="not_set">Nicht konfiguriert</string>
+    <string name="not_set">Nicht konfiguriert</string>
   <string name="action">Aktion:</string>
   <string name="current_key">Aktuelle Taste:</string>
   <string name="set_key_for_action">Taste konfigurieren</string>
@@ -86,10 +76,8 @@
   <string name="new_version_available_s">Neue Version verfügbar: %s</string>
   <string name="web_browser_optimized_for_tvs">Webbrowser optimiert für TVs</string>
   <string name="warning">Warnung</string>
-  <string name="unprotected_connection">Ungeschützte Verbindung</string>
-  <string name="err_webview_can_not_link">Keine Verbindung zur WebView-Komponente. Ist "Android System WebView" installiert?</string>
-  <string name="new_tab_title">[NEUER TAB]</string>
-  <string name="open_a_new_tab_here">Neuen Tab hier öffnen</string>
+    <string name="err_webview_can_not_link">Keine Verbindung zur WebView-Komponente. Ist "Android System WebView" installiert?</string>
+    <string name="open_a_new_tab_here">Neuen Tab hier öffnen</string>
   <string name="tabs">Tabs</string>
   <array name="tabs_options">
     <item>Öffne neuen Tab</item>
@@ -168,8 +156,7 @@
   </string-array>
   <string name="web_browser_engine_temporary_setting">Webbrowser-Engine</string>
   <string name="need_restart_message">Starten Sie die App neu, um die Änderungen zu übernehmen</string>
-  <string name="restart">Neu starten</string>
-  <string name="yes">Ja</string>
+    <string name="yes">Ja</string>
   <string name="no">NEIN</string>
   <string name="site_asks_to_open_unknown_url">Die Website fordert zum Öffnen einer unbekannten URL auf</string>
   <string name="site_asks_to_open_unknown_url_message">Möchten Sie diese URL in einer externen App öffnen?</string>

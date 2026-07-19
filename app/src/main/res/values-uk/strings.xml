@@ -5,30 +5,24 @@
   <string name="allow">Дозволити</string>
   <string name="bookmarks">Закладки</string>
   <string name="can_not_recognize">Не можу розпізнати</string>
-  <string name="close">Закрити</string>
-  <string name="deny">Заборонити</string>
+    <string name="deny">Заборонити</string>
   <string name="download_started">Завантаження розпочато…\nФайл буде збережено по шляху:\n%s</string>
   <string name="downloading_file">Завантаження файла…</string>
   <string name="edit">Редагувати</string>
   <string name="err_cant_open_file_chooser">Не можу запустити інтерфейс вибора файлу</string>
   <string name="error">Помилка</string>
-  <string name="loading">Завантаження…</string>
-  <string name="location">Локація</string>
+    <string name="location">Локація</string>
   <string name="new_bookmark">Нова закладка</string>
   <string name="ok">ОК</string>
   <string name="open_in_new_tab">Відкрити у новій вкладці</string>
-  <string name="open_new_tab">Нова вкладка</string>
-  <string name="speak">Шукати запит</string>
+    <string name="speak">Шукати запит</string>
   <string name="title">Назва</string>
   <string name="url_prompt">Введіть шуканий запит або URL</string>
   <string name="web_perm_request_confirmation">Ця сторінка запитує наступні ресурси:\n\n%s</string>
-  <string name="search_history">Пошук в історії</string>
-  <string name="search_engine_url_with_query_placeholder_query">URL пошукової системи (використовуйте параметер [query])</string>
+    <string name="search_engine_url_with_query_placeholder_query">URL пошукової системи (використовуйте параметер [query])</string>
   <string name="save">Зберегти</string>
   <string name="engine">Пошукова система</string>
-  <string name="change_search_engine">Змінити пошукову систему</string>
-  <string name="change_user_agent">Змінити User Agent</string>
-  <string name="choose_default_search_engine">Виберіть пошукову систему за-замовчанням</string>
+    <string name="choose_default_search_engine">Виберіть пошукову систему за-замовчанням</string>
   <string name="cancel">Відміна</string>
   <string name="cancelled">Відмінено</string>
   <string name="choose_user_agent_string">Обрати рядок User Agent</string>
@@ -57,8 +51,7 @@
   <string name="settings">Налаштунки</string>
   <string name="shortcut">\"Швидка\" клавіша</string>
   <string name="shortcuts">\"Швидкі\" клавіші</string>
-  <string name="toggle_main_menu">Відобразити меню</string>
-  <string name="voice_search">Голосовий пошук</string>
+    <string name="voice_search">Голосовий пошук</string>
   <string name="install">Встановити</string>
   <string name="turn_on_unknown_sources">Будь-ласка, активуйте системну настройку \"Невідомі джерела\"</string>
   <string name="turn_on_unknown_sources_for_app">Будь-ласка, дозвольте Vivara встановлювати додатки з невідомих джерел у системних налаштунках</string>
@@ -72,8 +65,7 @@
   <string name="downloads">Завантаження</string>
   <string name="auto_check_for_updates">Перевіряти поновлення</string>
   <string name="main">Головні</string>
-  <string name="unprotected_connection">Незахищене з\'єднання</string>
-  <string name="update">Оновити</string>
+    <string name="update">Оновити</string>
   <string name="update_channel">Канал оновлень</string>
   <string name="version_and_updates">Версія</string>
   <string name="version_s">Версія: %s</string>
@@ -85,8 +77,7 @@
   <string name="web_browser_optimized_for_tvs">Веб-браузер, оптимізований для телевізорів</string>
   <string name="new_version_available_s">Доступна нова версія: %s</string>
   <string name="err_webview_can_not_link">Не можу знайти WebView компонент. Спробуйте спочатку встановити Android System WebView</string>
-  <string name="new_tab_title">[НОВА ВКЛ.]</string>
-  <string name="open_a_new_tab_here">Відкрити нову вкладку тут</string>
+    <string name="open_a_new_tab_here">Відкрити нову вкладку тут</string>
   <string name="tabs">Вкладки</string>
   <string name="ssl_expired">Термін дії сертифікату минув</string>
   <string name="ssl_idmismatch">Невідповідність імені хоста</string>
@@ -103,9 +94,7 @@
   <string name="close_application">Закрити додаток</string>
   <string name="close_tab">Закрити вкладку</string>
   <string name="navigate_forward">Навігація вперед</string>
-  <string name="zoom_in">Збільшити</string>
-  <string name="zoom_out">Зменшити</string>
-  <string name="toggle_ads_blocking">Увімкнути / вимкнути блокування реклами</string>
+    <string name="toggle_ads_blocking">Увімкнути / вимкнути блокування реклами</string>
   <string name="never">ніколи</string>
   <string name="last_update">Останнє оновлення</string>
   <string name="update_ad_blocker_list">Оновити список блокувальника реклами</string>
@@ -116,8 +105,7 @@
     <item>Біла</item>
     <item>Темна</item>
   </array>
-  <string name="set_search_engine_as_homepage">Встановити пошукову систему як домашню сторінку</string>
-  <string name="toggle_keep_screen_on">Підтримувати екран увімкненим</string>
+    <string name="toggle_keep_screen_on">Підтримувати екран увімкненим</string>
   <string name="navigate_with_joystick_axes">Навігація осями джойстика</string>
   <string name="cursor_max_speed">Максимальна швидкість віртуального курсора</string>
   <string name="cursor_acceleration">Прискорення віртуального курсора</string>
@@ -169,8 +157,7 @@
 
   <string name="web_browser_engine_temporary_setting">"Двигун" веб-браузера</string>
   <string name="need_restart_message">Перезапустіть програму, щоб застосувати зміни</string>
-  <string name="restart">Перезапустити</string>
-  <string name="yes">Так</string>
+    <string name="yes">Так</string>
   <string name="no">Немає</string>
   <string name="site_asks_to_open_unknown_url">Сайт просить відкрити невідому URL-адресу</string>
   <string name="site_asks_to_open_unknown_url_message">Відкрити цю URL-адресу в зовнішній програмі?</string>
