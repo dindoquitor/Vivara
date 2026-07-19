@@ -31,7 +31,7 @@ class VersionSettingsView @JvmOverloads constructor(
 ) : ScrollView(context, attrs, defStyleAttr) {
 
     companion object {
-        private const val URL_SUPPORT_AUTHOR = "" // CHANGEME: set your donation/support URL
+        private const val URL_SUPPORT_AUTHOR = "https://buymeacoffee.com/playpixelpro"
         private const val URL_LICENSE =
             "" // CHANGEME: set your LICENSE.md URL
         private const val URL_PRIVACY_POLICY =
