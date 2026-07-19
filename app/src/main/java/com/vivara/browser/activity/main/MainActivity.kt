@@ -28,7 +28,6 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.Process
 import android.util.Log
-import android.util.Patterns
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.MotionEvent
@@ -753,9 +752,18 @@ open class MainActivity : AppCompatActivity(), ActionBar.Callback {
     }
 
     override fun search(text: String) {
-        var searchText = text
-        val trimmedLowercased = searchText.trim { it <= ' ' }.lowercase(Locale.ROOT)
-        if (Patterns.WEB_URL.matcher(searchText).matches() || trimmedLowercased.startsWith("http://") || trimmedLowercased.startsWith("https://")) {
+        var searchText = text.trim()
+        if (searchText.isEmpty()) return
+
+        // Fast URL detection without slow Patterns.WEB_URL regex
+        val isUrl = searchText.startsWith("http://", ignoreCase = true) ||
+                searchText.startsWith("https://", ignoreCase = true) ||
+                searchText.startsWith("ftp://", ignoreCase = true) ||
+                (searchText.contains('.') && !searchText.contains(' ') &&
+                 !searchText.startsWith('.') && !searchText.endsWith('.') &&
+                 !searchText.contains(".."))
+
+        if (isUrl) {
             if (!searchText.lowercase(Locale.ROOT).contains("://")) {
                 searchText = "https://$searchText"
             }

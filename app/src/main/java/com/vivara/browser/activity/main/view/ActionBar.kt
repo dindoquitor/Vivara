@@ -50,12 +50,10 @@ class ActionBar @JvmOverloads constructor(
             enterExtendedAddressBarMode()
 
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
             imm.showSoftInput(vb.etUrl, InputMethodManager.SHOW_IMPLICIT)
-            postDelayed(//workaround an android TV bug
-                {
-                    vb.etUrl.selectAll()
-                }, 500)
+            post {
+                vb.etUrl.selectAll()
+            }
         }
     }
 
@@ -124,6 +122,8 @@ class ActionBar @JvmOverloads constructor(
     }
 
     fun setAddressBoxText(text: String) {
+        // Don't overwrite while user is typing
+        if (vb.etUrl.hasFocus()) return
         if (text == Config.HOME_PAGE_URL) {
             vb.etUrl.setText("")
         } else {
