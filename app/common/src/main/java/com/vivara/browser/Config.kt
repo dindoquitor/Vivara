@@ -178,7 +178,7 @@ class Config(val prefs: SharedPreferences) {
             prefs.edit().putString(HOME_PAGE_KEY, value).apply()
         }
 
-    var searchEngineURL = ObservableStringPreference(SearchEnginesURLs[0], SEARCH_ENGINE_URL_PREF_KEY)
+    var searchEngineURL = ObservableStringPreference(SearchEnginesURLs[3], SEARCH_ENGINE_URL_PREF_KEY)
 
     var webEngine: String
         get() {

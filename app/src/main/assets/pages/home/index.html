@@ -541,7 +541,7 @@ function performSearch(text) {
         window.open(url, "_self");
         return;
     }
-    var searchEngineUrl = localStorage.getItem('search-engine-url') ? localStorage.getItem('search-engine-url') : searchEngineUrlMap['google'];
+    var searchEngineUrl = localStorage.getItem('search-engine-url') ? localStorage.getItem('search-engine-url') : searchEngineUrlMap['ddg'];
     var searchUrl = searchEngineUrl.replace("[query]", encodeURIComponent(text));
     window.open(searchUrl, "_self");
 }
@@ -580,7 +580,7 @@ function escapeHTML(html) {
 }
 
 // ── Initialization ──
-var searchEngine = localStorage.getItem('search-engine') ? localStorage.getItem('search-engine') : "google";
+var searchEngine = localStorage.getItem('search-engine') ? localStorage.getItem('search-engine') : "ddg";
 var searchEngineUrl = localStorage.getItem('search-engine-url') ? localStorage.getItem('search-engine-url') : searchEngineUrlMap[searchEngine];
 
 document.getElementById("search-input").addEventListener("keydown", function(e) {
